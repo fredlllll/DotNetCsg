@@ -174,6 +174,23 @@ namespace Csg
             var tresult = v1.Tex + (v2.Tex - v1.Tex) * u;
             return new Vertex(result, tresult);
         }
+		public static Plane FromVector3Ds (Vector3D[] vectors)
+		{
+			var a = vectors[0];
+			var b = vectors[1];
+			var c = vectors[2];
+			var n = (b - a).Cross (c - a);
+
+			// ensure that we choose points that are not colinear:
+			var increment = 1;
+			while (n.Length == 0) {
+				c = vectors[2 + increment];
+				n = (b - a).Cross (c - a);
+				increment++;
+			}
+			n = n.Unit;
+			return new Plane (n, n.Dot (a));
+		}
         public static Plane FromVector3Ds(Vector3D a, Vector3D b, Vector3D c)
         {
             var n = (b - a).Cross(c - a).Unit;

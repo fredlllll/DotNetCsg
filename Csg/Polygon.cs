@@ -25,8 +25,13 @@ namespace Csg
         {
             Vertices = vertices;
             Shared = shared ?? defaultShared;
-            Plane = plane ?? Plane.FromVector3Ds(vertices[0].Pos, vertices[1].Pos, vertices[2].Pos);
-            if (debug)
+            var verts = new Vector3D[vertices.Count];
+			for (int i = 0; i < verts.Length; i++)
+            {
+                verts[i] = vertices[i].Pos;
+            }
+            Plane = plane ?? Plane.FromVector3Ds (verts);
+			if (debug)
             {
                 //CheckIfConvex();
             }
