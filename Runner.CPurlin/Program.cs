@@ -119,4 +119,4 @@ Solid Punching(double z, bool onWeb = false)
     return punching.Translate(0, 0, height / 2 - z);
 }
 
-static Vector3D V3D(double x, double y, double z) => new Vector3D(x, y, z);
+static Vector3D V3D(double x, double y, double z) => new(x, y, z);
