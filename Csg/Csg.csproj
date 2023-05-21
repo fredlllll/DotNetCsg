@@ -3,12 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     
-    <PackageId>SolidGeometry</PackageId>
+    <PackageId>DotNetCsg</PackageId>
     <Version>1.0.0</Version>
-    <Authors>praeclarum</Authors>
+    <Authors>talanc;praeclarum</Authors>
     <Description>Solid modelling of meshes supporting basic shapes (boxes, cylinders, spheres, ...), booleans operations (union, subtract, intersect) and output to STL.</Description>
-    <PackageTags>Mesh;3D;Geometry;CSG;Model;Octree;Graphics</PackageTags>
-    <PackageProjectUrl>https://github.com/praeclarum/Csg</PackageProjectUrl>
+    <PackageTags>Mesh;3D;Geometry;CSG;Model;Graphics</PackageTags>
+    <PackageProjectUrl>https://github.com/talanc/DotNetCsg</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
