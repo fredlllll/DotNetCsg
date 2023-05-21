@@ -1,17 +1,13 @@
-# CSG
+# DotNetCsg
 
-[![Build Status](https://app.bitrise.io/app/ac8a3403f1b8977a/status.svg?token=cZ72_Fb1fv1qFyBXXDQxhg)](https://app.bitrise.io/app/ac8a3403f1b8977a)
+DotNetCsg is a Constructive Solid Geometry (CSG) is a modeling library that provides 3D solid primitives and operators to manipulate them.
 
-[![NuGet Package](https://img.shields.io/nuget/v/SolidGeometry.svg)](https://www.nuget.org/packages/SolidGeometry)
+## History
 
-Constructive Solid Geometry is a modeling library that provides
-3D solid primitives and operators to manipulate them.
+This library is a fork of [hypar-io/Csg](https://github.com/hypar-io/Csg),
+which is a fork of [praeclarum/Csg](https://github.com/praeclarum/Csg),
+which is a manual port of [OpenJsCad's](https://github.com/joostn/OpenJsCad) [csg.js](https://github.com/joostn/OpenJsCad/blob/gh-pages/src/csg.js).
 
-This library is a manual port of [OpenJsCad's](https://github.com/joostn/OpenJsCad) [csg.js](https://github.com/joostn/OpenJsCad/blob/gh-pages/src/csg.js).
+## Building
 
-
-## Development
-
-To build Csg, you need C# 8.0 available through [.NET Core 3.0](https://dotnet.microsoft.com/download).
-
-
+To build, ensure that you have the latest .NET SDK installed.
