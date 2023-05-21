@@ -208,6 +208,10 @@ namespace Csg
 			return Transform (Matrix4x4.Scaling (new Vector3D (x, y, z)));
 		}
 
+		public Solid RotateX(double degrees) => Transform(Matrix4x4.RotationX(degrees));
+		public Solid RotateY(double degrees) => Transform(Matrix4x4.RotationY(degrees));
+		public Solid RotateZ(double degrees) => Transform(Matrix4x4.RotationZ(degrees));
+
 		Solid Canonicalized ()
 		{
 			if (IsCanonicalized) {
