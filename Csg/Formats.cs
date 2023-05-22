@@ -79,9 +79,9 @@ namespace Csg
             // as that may lead some software to confuse it with an ASCII STL file.
             if (name.StartsWith("solid", StringComparison.OrdinalIgnoreCase))
             {
-                // Ensure header starts with "stlbin" instead
+                // Have header start with "stlbin"
                 header[0] = (byte)'s'; header[1] = (byte)'t'; header[2] = (byte)'l';
-                header[3] = (byte)'s'; header[4] = (byte)'t'; header[5] = (byte)'l';
+                header[3] = (byte)'b'; header[4] = (byte)'i'; header[5] = (byte)'n';
                 hi += 6;
             }
 
