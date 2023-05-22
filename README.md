@@ -1,6 +1,6 @@
 # DotNetCsg
 
-DotNetCsg is a Constructive Solid Geometry (CSG) is a modeling library that provides 3D solid primitives and operators to manipulate them.
+DotNetCsg is a Constructive Solid Geometry (CSG) modeling library that provides 3D solid primitives and operators to manipulate them.
 
 ## History
 
