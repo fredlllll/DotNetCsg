@@ -11,6 +11,7 @@
 		<PackageTags>Mesh;3D;Geometry;CSG;Model;Graphics</PackageTags>
 		<PackageProjectUrl>https://github.com/talanc/DotNetCsg</PackageProjectUrl>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -25,6 +26,7 @@
 
 	<ItemGroup>
 		<None Include="..\LICENSE.txt" Pack="true" PackagePath="$(PackageLicenseFile)" />
+		<None Include="..\README.md" Pack="true" PackagePath="$(PackageReadmeFile)" />
 	</ItemGroup>
 
 	<!-- <ItemGroup>

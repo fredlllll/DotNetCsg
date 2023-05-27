@@ -1,6 +1,6 @@
 ﻿using Csg;
-using System.Diagnostics;
 using static Csg.Solids;
+using System.Diagnostics;
 
 const bool debug = false;
 
@@ -16,7 +16,7 @@ var punchingsWeb = new List<double>() { 35 };
 var punchingsFlange = new List<double>() { 70 };
 var punchingsCenter = new List<double>() { 105 };
 
-var height = 200.0;
+var height = 1000.0;
 
 var r = 5.0;
 
@@ -72,9 +72,16 @@ var slipbottom = Cube(
     center: V3D(flange / 2 - thickness / 2, -web / 2 + r / 2 + lip / 2, 0),
     size: V3D(thickness, lip - r, h1));
 
+
+var notch = Cube(web, web, web, true)
+    .Translate(0, 0 - web + lip * 1.5, height / 2);
+
 var s = Union(sweb, sflangetop, sflangebottom, sliptop, slipbottom, Corner(-1, +1), Corner(+1, +1), Corner(-1, -1), Corner(+1, -1))
     .RotateX(90)
-    .Translate(0, height / 2, 0);
+    .Translate(0, height / 2, 0)
+    .RotateX(90);
+
+s = s.Subtract(notch);
 
 var outputName = "CPurlin";
 var outputTextPath = outputName + "-text.stl";
