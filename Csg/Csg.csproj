@@ -5,7 +5,7 @@
 		<AssemblyName>DotNetCsg</AssemblyName>
 
 		<PackageId>DotNetCsg</PackageId>
-		<Version>1.0.0</Version>
+		<Version>1.0.1</Version>
 		<Authors>talanc</Authors>
 		<Description>Solid modelling of meshes supporting basic shapes (boxes, cylinders, spheres, ...), booleans operations (union, subtract, intersect) and output to STL.</Description>
 		<PackageTags>Mesh;3D;Geometry;CSG;Model;Graphics</PackageTags>
