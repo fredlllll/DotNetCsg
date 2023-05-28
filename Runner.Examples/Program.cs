@@ -4,20 +4,20 @@ using Csg;
 // Use this for simpler calls to solids and operations
 using static Csg.Solids;
 
-Solid allShapes = new();
+Solid allSolids = new();
 double allX = 0;
-void addShape(params Solid[] shapes)
+void add(params Solid[] solids)
 {
     allX += 5;
 
-    allShapes = Union(
-        allShapes,
-        Union(shapes).Translate(x: allX)
+    allSolids = Union(
+        allSolids,
+        Union(solids).Translate(x: allX)
     );
 }
 
 //
-// Basic Shapes
+// Basic Solids
 //
 
 // Create a basic cube
@@ -29,9 +29,9 @@ var sphere = Sphere(r: 0.5, center: true);
 // Create a basic cylinder
 var cylinder = Cylinder(r: 0.5, h: 1, center: true);
 
-addShape(cube);
-addShape(sphere);
-addShape(cylinder);
+add(cube);
+add(sphere);
+add(cylinder);
 
 //
 // Moving (Translate)
@@ -49,7 +49,7 @@ var moveSphere = sphere.Translate(y: +2);
 // Have a cylinder up (z-axis)
 var moveCylinder = cylinder.Translate(z: +2);
 
-addShape(smallCube, moveCube, moveSphere, moveCylinder);
+add(smallCube, moveCube, moveSphere, moveCylinder);
 
 //
 // Operations
@@ -57,13 +57,13 @@ addShape(smallCube, moveCube, moveSphere, moveCylinder);
 
 var offsetSphere = sphere.Translate(x: 0.5, y: 0.5, z: 0.5);
 
-// Union combines the shapes together, even if there's no shared area
+// Union combines the solids together, even if there's no shared area
 var union = Union(cube, offsetSphere);
 
-// Difference removes the second shape, taking the shared area from the first shape as well
+// Difference removes the second solid, taking the shared area from the first solid as well
 var difference = Difference(cube, offsetSphere);
 
-// Intersection keeps on the shared area of both shapes, if there's no shared area then it returns empty space
+// Intersection keeps on the shared area of both solids, if there's no shared area then it returns empty space
 var intersection = Intersection(cube, offsetSphere);
 
 // Note that you can also call the operations via member functions with no difference to the object returned
@@ -71,9 +71,9 @@ var intersection = Intersection(cube, offsetSphere);
 //var difference = cube.Subtract(offsetSphere);
 //var intersection = cube.Intersect(offsetSphere);
 
-addShape(union);
-addShape(difference);
-addShape(intersection);
+add(union);
+add(difference);
+add(intersection);
 
 //
 // Example: Barbell via union
@@ -92,7 +92,7 @@ var barbell = Union(bar,
     weight.Translate(y: +0.9)
 );
 
-addShape(barbell);
+add(barbell);
 
 //
 // Example: Pipe via Difference
@@ -103,10 +103,10 @@ var inner = Cylinder(r: 0.95, h: 4, center: true);
 
 var pipe = Difference(outer, inner);
 
-addShape(pipe);
+add(pipe);
 
 //
-// Writing a shape to an STL file
+// Writing a solid to an STL file
 //
 
 using (var fs = File.Create($"cube.stl"))
@@ -141,7 +141,7 @@ using (var wr = new StreamWriter(fs))
     wiki.WriteStl("wiki", wr);
 }
 
-addShape(wiki);
+add(wiki);
 
 //
 // Finish by creating the STL file and opening it
@@ -151,7 +151,7 @@ addShape(wiki);
 using (var fs = File.Create($"CsgExamples.stl"))
 using (var sw = new StreamWriter(fs))
 {
-    allShapes.WriteStl("CsgExamples", sw);
+    allSolids.WriteStl("CsgExamples", sw);
 }
 
 // Open the file in the default STL viewer (e.g. "3D Viewer" on Windows)
