@@ -9,7 +9,8 @@ var flange = 64.0;
 var lip = 18.5;
 var thickness = 2.4;
 
-var holeSize = 18.0;
+var holeSize1 = 18.0;
+var holeSize2 = 22.0;
 
 var webCenter = 60.0;
 var punchingsWeb = new List<double>() { 35 };
@@ -118,11 +119,26 @@ Solid Corner(int x, int y)
 
 Solid Punching(double z, bool onWeb = false)
 {
-    var punching = Cylinder(holeSize / 2, thickness * 4, true);
+    var punching = Cylinder(holeSize1 / 2, thickness * 4, true);
+
+    if (holeSize2 > holeSize1)
+    {
+        // Pill-shaped hole instead
+
+        var diff = holeSize2 - holeSize1;
+
+        punching = Union(
+            punching.Translate(z: -diff / 2),
+            punching.Translate(z: +diff / 2),
+            Cube(V3D(holeSize1, thickness * 4, diff), center: true)
+        );
+    }
+
     if (onWeb)
     {
         punching = punching.RotateZ(90);
     }
+
     return punching.Translate(0, 0, height / 2 - z);
 }
 
