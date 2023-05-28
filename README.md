@@ -37,7 +37,23 @@ using (var wr = new StreamWriter(fs))
 }
 ```
 
-![Basic Shapes](https://raw.githubusercontent.com/talanc/DotNetCsg/main/docs/snippet-wiki.png)
+![Wiki](https://raw.githubusercontent.com/talanc/DotNetCsg/main/docs/snippet-wiki.png)
+
+## History
+
+This library is a fork of [hypar-io/Csg](https://github.com/hypar-io/Csg), which is a fork of [praeclarum/Csg](https://github.com/praeclarum/Csg), which is a manual port of [OpenJsCad's](https://github.com/joostn/OpenJsCad) [csg.js](https://github.com/joostn/OpenJsCad/blob/gh-pages/src/csg.js).
+
+My reason for this fork is to get the changes from **hypar-io/Csg** into a NuGet package, and to build up some documentation around the library (but it's quite easy to use without documentation).
+
+## Building
+
+To build, ensure that you have the latest .NET SDK installed.
+
+## Other Stuff (let me if you have a better title)
+
+- Right-handed coordinate system.
+- All function specify angles in degrees.
+- Polygon vertices are stored in counterclockwise (CCW) order.
 
 ## Snippets
 
@@ -104,7 +120,7 @@ var intersection = Intersection(cube, offsetSphere);
 //var intersection = cube.Intersect(offsetSphere);
 ```
 
-![Basic Shapes](https://raw.githubusercontent.com/talanc/DotNetCsg/main/docs/snippet-operations.png)
+![Operations](https://raw.githubusercontent.com/talanc/DotNetCsg/main/docs/snippet-operations.png)
 
 ### Example: Vintage Barbell
 
@@ -123,7 +139,7 @@ var barbell = Union(bar,
 );
 ```
 
-![Basic Shapes](https://raw.githubusercontent.com/talanc/DotNetCsg/main/docs/snippet-barbell.png)
+![Barbell](https://raw.githubusercontent.com/talanc/DotNetCsg/main/docs/snippet-barbell.png)
 
 ### Example: Pipe
 
@@ -134,7 +150,7 @@ var inner = Cylinder(r: 0.95, h: 4, center: true);
 var pipe = Difference(outer, inner);
 ```
 
-![Basic Shapes](https://raw.githubusercontent.com/talanc/DotNetCsg/main/docs/snippet-pipe.png)
+![Pipe](https://raw.githubusercontent.com/talanc/DotNetCsg/main/docs/snippet-pipe.png)
 
 ### Writing shape to a file
 
@@ -146,13 +162,3 @@ using (var wr = new StreamWriter(fs))
     cube.WriteStl("cube", wr);
 }
 ```
-
-## History
-
-This library is a fork of [hypar-io/Csg](https://github.com/hypar-io/Csg), which is a fork of [praeclarum/Csg](https://github.com/praeclarum/Csg), which is a manual port of [OpenJsCad's](https://github.com/joostn/OpenJsCad) [csg.js](https://github.com/joostn/OpenJsCad/blob/gh-pages/src/csg.js).
-
-My reason for this fork is to get the changes from **hypar-io/Csg** into a NuGet package, and to build up some documentation around the library (but it's quite easy to use without documentation).
-
-## Building
-
-To build, ensure that you have the latest .NET SDK installed.
