@@ -73,7 +73,6 @@ var slipbottom = Cube(
     center: V3D(flange / 2 - thickness / 2, -web / 2 + r / 2 + lip / 2, 0),
     size: V3D(thickness, lip - r, h1));
 
-
 var notch = Cube(web, web, web, true)
     .Translate(0, 0 - web + lip * 1.5, height / 2);
 
