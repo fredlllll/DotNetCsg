@@ -310,7 +310,7 @@ namespace Csg
 			}
 		}
 
-		BoundingBox Bounds {
+		public BoundingBox Bounds {
 			get {
 				if (cachedBoundingBox == null) {
 					var minpoint = new Vector3D (0, 0, 0);
