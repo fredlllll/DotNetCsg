@@ -212,6 +212,58 @@ namespace Csg
 		public Solid RotateY(double degrees) => Transform(Matrix4x4.RotationY(degrees));
 		public Solid RotateZ(double degrees) => Transform(Matrix4x4.RotationZ(degrees));
 
+		public Solid WithBoxMapping ()
+		{
+            var min = Bounds.Min;
+            var max = Bounds.Max;
+
+            var sizeX = max.X - min.X;
+            var sizeY = max.Y - min.Y;
+            var sizeZ = max.Z - min.Z;
+
+            var newPolygons = new List<Polygon>();
+			foreach (var poly in Polygons)
+			{
+                var n = poly.Plane.Normal;
+                char majorAxis = 'z';
+                if (Math.Abs(n.X) >= Math.Abs(n.Y) && Math.Abs(n.X) >= Math.Abs(n.Z))
+                    majorAxis = 'x';
+                else if (Math.Abs(n.Y) >= Math.Abs(n.Z))
+                    majorAxis = 'y';
+				
+                var newVertices = new List<Vertex>();
+				foreach (var vertex in poly.Vertices)
+                {
+                    var p = vertex.Pos;
+                    double u, v;
+                    switch (majorAxis)
+                    {
+                        case 'x':
+                            u = (p.Y - min.Y) / sizeY;
+                            v = (p.Z - min.Z) / sizeZ;
+                            break;
+                        case 'y':
+                            u = (p.X - min.X) / sizeX;
+                            v = (p.Z - min.Z) / sizeZ;
+                            break;
+                        case 'z':
+                            u = (p.X - min.X) / sizeX;
+                            v = (p.Y - min.Y) / sizeY;
+                            break;
+                        default:
+                            throw new InvalidDataException();
+                    }
+					newVertices.Add(new Vertex(p, new Vector2D(u, v)));
+                }
+                newPolygons.Add(new Polygon(newVertices,poly.Shared,poly.Plane));
+            }
+
+            var result = FromPolygons(newPolygons);
+            result.IsRetesselated = this.IsRetesselated;
+            result.IsCanonicalized = this.IsCanonicalized;
+            return result;
+        }
+
 		Solid Canonicalized ()
 		{
 			if (IsCanonicalized) {
